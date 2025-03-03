@@ -16,7 +16,10 @@ LandingPage.getInitialProps = async ({ req }) => {
         // This is because server is running in Pods and it can't reach ticketing.dev url
         const { data } = await axios.get(
             'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser',
+            // get cookies from req and attach to following reqs. Only need to do it in server-side
+            // because browsers will handle it automatically
             { headers: req.headers, }
+
         ).catch((err) => console.log(err.message));
 
         return data;
