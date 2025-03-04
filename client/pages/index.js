@@ -8,6 +8,8 @@ const LandingPage = ({ currentUser }) => {
 
 // Requests made in getInitialProps issued from server.
 // Except for in-app nav where requests will be issued from browser.
+// This particular func is called by getInitialProps in _app.js:
+// appContext.Component.getInitialProps
 LandingPage.getInitialProps = async (context) => {
     const { data } = await buildClient(context).get('/api/users/currentuser');
 
