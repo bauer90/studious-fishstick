@@ -1,7 +1,5 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import { app } from '../app';
-import request from 'supertest';
 import jwt from 'jsonwebtoken';
 
 declare global {
@@ -37,7 +35,9 @@ afterAll(async () => {
 global.signin = () => {
     // can't have global.signin the same as in auth because there is no signup in tickets
     const payload = {
-        id: 'eooiweo',
+        // generate a different userid each time, 
+        // for test of a user updating other user's ticket
+        id: new mongoose.Types.ObjectId().toHexString(),
         email: '1@1.com',
     }
 

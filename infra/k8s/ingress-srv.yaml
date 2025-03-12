@@ -17,6 +17,13 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
+          - path: /api/tickets/?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: tickets-srv
+                port:
+                  number: 3000
           - path: /?(.*) # if not matched with above (/api..), it will go to Next pod
             pathType: ImplementationSpecific
             backend:
